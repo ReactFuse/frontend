@@ -82,7 +82,8 @@
 		"velocity-react": "1.4.3",
 		"autoprefixer": "^9.8.6",
 		"postcss-cli": "^7.1.2",
-		"tailwindcss": "^1.8.6"
+		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+		"postcss": "^7.0.35"
 	},
 	"resolutions": {
 		"react": "16.13.1",
@@ -109,9 +110,7 @@
 		"prettier": "^2.0.5",
 		"promise": "8.1.0",
 		"purgecss": "1.4.2",
-		"source-map-explorer": "2.5.0",
-		"tailwindcss": "1.8.6",
-		"tailwindcss-dir": "4.0.0"
+		"source-map-explorer": "2.5.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
