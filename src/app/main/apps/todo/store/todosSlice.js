@@ -12,7 +12,7 @@ export const getTodos = createAsyncThunk('todoApp/todos/getTodos', async (routeP
 });
 
 export const addTodo = createAsyncThunk('todoApp/todos/addTodo', async (todo, { dispatch, getState }) => {
-	const response = await axios.post('http://localhost:5002/api/todo/addTodo', todo);
+	const response = await axios.post('https://reactfusebackend.herokuapp.com/api/todo/addTodo', todo);
 	const data = await response.data;
 
 	dispatch(getTodos());
@@ -30,7 +30,7 @@ export const updateTodo = createAsyncThunk('todoApp/todos/updateTodo', async (to
 });
 
 export const removeTodo = createAsyncThunk('todoApp/todos/removeTodo', async (todoId, { dispatch, getState }) => {
-	const response = await axios.post('http://localhost:5002/api/todo/deleteTodo', todoId);
+	const response = await axios.post('https://reactfusebackend.herokuapp.com/api/todo/deleteTodo', todoId);
 	const data = await response.data;
 
 	dispatch(getTodos());

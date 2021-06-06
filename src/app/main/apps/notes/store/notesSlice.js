@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 import axios from 'axios';
 
 export const getNotes = createAsyncThunk('notesApp/notes/getNotes', async () => {
-	const response = await axios.get('http://localhost:5002/api/note/getNotes');
+	const response = await axios.get('https://reactfusebackend.herokuapp.com/api/note/getNotes');
 	let data = await response.data.notes;
 	console.log(' data is', data);
 	data = data.map(item => {
@@ -14,7 +14,7 @@ export const getNotes = createAsyncThunk('notesApp/notes/getNotes', async () => 
 });
 
 export const createNote = createAsyncThunk('notesApp/notes/createNote', async note => {
-	const response = await axios.post('http://localhost:5002/api/note/addNote', { note });
+	const response = await axios.post('https://reactfusebackend.herokuapp.com/api/note/addNote', { note });
 	const data = await response.data;
 	console.log('notes data', data);
 	getNotes();
@@ -22,13 +22,15 @@ export const createNote = createAsyncThunk('notesApp/notes/createNote', async no
 });
 
 export const updateNote = createAsyncThunk('notesApp/notes/updateNote', async note => {
-	const response = await axios.put('http://localhost:5002/api/note/updateNote', { note });
+	const response = await axios.put('https://reactfusebackend.herokuapp.com/api/note/updateNote', { note });
 	const data = await response.data;
 	return data;
 });
 
 export const removeNote = createAsyncThunk('notesApp/notes/removeNote', async (noteId, dispatch) => {
-	const response = await axios.delete('http://localhost:5002/api/note/deleteNote', { data: { id: noteId } });
+	const response = await axios.delete('https://reactfusebackend.herokuapp.com/api/note/deleteNote', {
+		data: { id: noteId }
+	});
 	const data = await response.data;
 	console.log(data);
 	dispatch(getNotes());

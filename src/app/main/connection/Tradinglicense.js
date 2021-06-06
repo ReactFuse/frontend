@@ -1,5 +1,6 @@
 import axios from 'axios';
-let url = 'http://localhost:5002';
+// let url = 'http://localhost:5002';
+let url = 'https://reactfusebackend.herokuapp.com';
 
 const getTradings = async data => {
 	console.log(data);

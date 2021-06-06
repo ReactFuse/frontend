@@ -1,12 +1,13 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
+let url = 'https://reactfusebackend.herokuapp.com';
 
 export const dateFormat = 'YYYY-MM-DDTHH:mm:ss.sssZ';
 
 export const getEvents = createAsyncThunk('calendarApp/events/getEvents', async () => {
 	console.log('getting events');
-	const response = await axios.get('http://localhost:5002/api/calendar/');
+	const response = await axios.get('https://reactfusebackend.herokuapp.com/api/calendar/');
 	const data = await response.data;
 	const events = data.map(event => {
 		event.id = event._id;
@@ -17,7 +18,7 @@ export const getEvents = createAsyncThunk('calendarApp/events/getEvents', async 
 
 export const addEvent = createAsyncThunk('calendarApp/events/addEvent', async (newEvent, { dispatch }) => {
 	console.log('i am new event', newEvent);
-	const response = await axios.post('http://localhost:5002/api/calendar/addEvent', newEvent);
+	const response = await axios.post('https://reactfusebackend.herokuapp.com/api/calendar/addEvent', newEvent);
 	console.log(response);
 	const data = await response.data;
 	getEvents();
@@ -26,7 +27,7 @@ export const addEvent = createAsyncThunk('calendarApp/events/addEvent', async (n
 
 export const updateEvent = createAsyncThunk('calendarApp/events/updateEvent', async (event, { dispatch }) => {
 	console.log('i am update event', event);
-	const response = await axios.put('http://localhost:5002/api/calendar', event);
+	const response = await axios.put('https://reactfusebackend.herokuapp.com/api/calendar', event);
 	console.log('respone of an update', response);
 	const data = await response.data;
 
@@ -35,7 +36,9 @@ export const updateEvent = createAsyncThunk('calendarApp/events/updateEvent', as
 
 export const removeEvent = createAsyncThunk('calendarApp/events/remove-event', async (eventId, { dispatch }) => {
 	console.log(eventId);
-	const response = await axios.delete('http://localhost:5002/api/calendar', { data: { id: eventId } });
+	const response = await axios.delete('https://reactfusebackend.herokuapp.com/api/calendar', {
+		data: { id: eventId }
+	});
 	const data = await response.data;
 	console.log(data);
 

@@ -56,7 +56,7 @@ class JwtService extends FuseUtils.EventEmitter {
 	createUser = data => {
 		return new Promise((resolve, reject) => {
 			console.log(data);
-			axios.post('http://localhost:5002/api/users/register', data).then(response => {
+			axios.post('https://reactfusebackend.herokuapp.com/api/users/register', data).then(response => {
 				console.log(response);
 				if (response.data) {
 					console.log('userID checking ', response.data.userId);
@@ -72,7 +72,7 @@ class JwtService extends FuseUtils.EventEmitter {
 		var data = { email, password };
 		console.log(data);
 		return new Promise((resolve, reject) => {
-			axios.post('http://localhost:5002/api/users/login', data).then(response => {
+			axios.post('https://reactfusebackend.herokuapp.com/api/users/login', data).then(response => {
 				if (response.data.success === true) {
 					localStorage.setItem('jwt_access_token', response.data.access_token);
 					console.log('our token', response.data.access_token);
@@ -104,7 +104,7 @@ class JwtService extends FuseUtils.EventEmitter {
 			access_token = localStorage.getItem('jwt_access_token');
 			console.log('access token', access_token);
 			axios
-				.post('http://localhost:5002/api/users/access-token', { access_token })
+				.post('https://reactfusebackend.herokuapp.com/api/users/access-token', { access_token })
 				.then(response => {
 					console.log('Setting up token', response.data);
 					if (response.data.user) {
